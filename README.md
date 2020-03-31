@@ -18,4 +18,3 @@ public OnCheckOperatingSystem(playerid, OSType) {
     return 1;
 }
 ```
-1. Done.
