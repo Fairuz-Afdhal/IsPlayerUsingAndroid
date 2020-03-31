@@ -79,18 +79,25 @@ public OnPlayerConnect(playerid)
         PhysFlags[playerid][Flags:i] = 0;
     }
     #endif
-
-    SendClientCheck(playerid, 0x48, 0, 0, 2);
-    SendClientCheck(playerid, 0x46, 1598, 0, 28); // 1598 - beachball
-    SendClientCheck(playerid, 0x47, 1598, 0, 48); // 1598 - beachball
     
+    #if defined CHECK_0x48
+    SendClientCheck(playerid, 0x48, 0, 0, 2);
+    #endif
+    
+    #if defined CHECK_0x46
+    SendClientCheck(playerid, 0x46, 1598, 0, 28); // 1598 - beachball
+    #endif
+
+    #if defined CHECK_0x47
+    SendClientCheck(playerid, 0x47, 1598, 0, 48); // 1598 - beachball
+    #endif
     return 1;
 }
 
 public OnClientCheckResponse(playerid, type, arg, response)
 {
-    new str[128], pName[MAX_PLAYER_NAME + 1];
-    GetPlayerName(playerid, pName, sizeof(pName));
+    //new str[128], pName[MAX_PLAYER_NAME + 1];
+    //GetPlayerName(playerid, pName, sizeof(pName));
     switch(type)
     {
         #if defined CHECK_0x2
@@ -102,8 +109,10 @@ public OnClientCheckResponse(playerid, type, arg, response)
             {
                 PhysFlags[playerid][Flags:i] = GetBit(arg, i);
             }
-            format(str, sizeof(str), "Player:%s bSubmergedInWater: %d, bOnSolidSurface: %d", pName, PhysFlags[playerid][bSubmergedInWater], PhysFlags[playerid][bOnSolidSurface]);
-            printf(str);
+            //Debug
+            //format(str, sizeof(str), "Player:%s bSubmergedInWater: %d, bOnSolidSurface: %d", pName, PhysFlags[playerid][bSubmergedInWater], PhysFlags[playerid][bOnSolidSurface]);
+            //printf(str); 
+            SetPVarInt(playerid, "NotAndroid", 1);
         }
         #endif
 
@@ -112,8 +121,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
         {
             // CBaseModelInfoSAInterface
             // https://github.com/multitheftauto/mtasa-blue/blob/master/MTA10/game_sa/CModelInfoSA.h#L138-L181
-            format(str, sizeof(str), "Player:%s Model %d has checksum 0x%x", pName, arg, response);
-            printf(str);
+            //Debug
+            //format(str, sizeof(str), "Player:%s Model %d has checksum 0x%x", pName, arg, response);
+            //printf(str);
             SetPVarInt(playerid, "NotAndroid", 1);
         
         }
@@ -124,8 +134,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
         {
             // CColModelSAInterface
             // https://github.com/multitheftauto/mtasa-blue/blob/master/MTA10/game_sa/CColModelSA.h#L87-L91
-            format(str, sizeof(str), "Player:%s Col model %d has checksum 0x%x", pName, arg, response);
-            printf(str);
+            //Debug            
+            //format(str, sizeof(str), "Player:%s Col model %d has checksum 0x%x", pName, arg, response);
+            //printf(str);
             SetPVarInt(playerid, "NotAndroid", 1);
         }
         #endif
@@ -133,8 +144,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
         #if defined CHECK_0x48        
         case 0x48:
         {
-            format(str, sizeof(str), "Player:%s Your computer has been running for %d!", pName, arg);
-            printf(str);
+            //Debug
+            //format(str, sizeof(str), "Player:%s Your computer has been running for %d!", pName, arg);
+            //printf(str);
             SetPVarInt(playerid, "NotAndroid", 1);	
         }
         #endif
