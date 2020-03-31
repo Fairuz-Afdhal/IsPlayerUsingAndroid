@@ -11,7 +11,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define CHECK_0x46
 //#define CHECK_0x47
 //#define CHECK_0x48
-#define IsPlayerAndroid(%0)                 GetPVarInt(%0, "NotAndroid") == 1)
+#define IsPlayerAndroid(%0)                 GetPVarInt(%0, "NotAndroid") == 0)
 
 #if defined CHECK_0x2
 enum Flags
