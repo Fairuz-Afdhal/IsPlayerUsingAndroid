@@ -15,7 +15,7 @@
 //configuration
 #define USE_METHOD 3 // 1 - 4
 
-//Just to sure user not inserting the configuration wrong
+//Just to sure user not inserting the wrong configuration
 #if USE_METHOD > 4 || USE_METHOD < 1
     #error USE_METHOD must contain 1 - 4
 #endif
@@ -64,7 +64,7 @@ new PhysFlags[MAX_PLAYERS][Flags];
 #endif
 
 new 
-    bool:isPC;
+    bool:isPC[MAX_PLAYERS];
 
 public OnFilterScriptInit()
 {
@@ -110,7 +110,7 @@ public OnPlayerConnect(playerid)
 
 forward OnCheckOS(playerid);
 public OnCheckOS(playerid)
-    return ((!isPC) ? (CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, 0)) : (0));
+    return ((!isPC[playerid]) ? (CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, 0)) : (0));
 
 public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 {
@@ -123,7 +123,7 @@ public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
         for(new i = 0; i < 32; i++)
             PhysFlags[playerid][Flags:i] = GetBit(memaddr, i);
         
-        CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, ++isPC);
+        CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, ++isPC[playerid]);
     }
     #elseif USE_METHOD >= 2
     // 0x46 | CBaseModelInfoSAInterface
@@ -132,7 +132,7 @@ public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
     // 0x47 | CColModelSAInterface
     // https://github.com/multitheftauto/mtasa-blue/blob/master/MTA10/game_sa/CColModelSA.h#L87-L91
     if (actionid == 0x46 || actionid == 0x47 || actionid == 0x48)
-        CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, ++isPC);
+        CallRemoteFunction(#OnCheckOperatingSystem, "dd", playerid, ++isPC[playerid]);
     #endif
     return 1;
 }
