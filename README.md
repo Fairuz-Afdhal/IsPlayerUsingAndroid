@@ -1,5 +1,5 @@
 # OnCheckOperatingSystem
-A filterscript that checks if a player is using android, forked from [Fairuz-Afdhal/IsPlayerUsingAndroid](https://github.com/Fairuz-Afdhal/IsPlayerUsingAndroid) and work alongside samp-stdlib (sampctl)
+A filterscript that checks if a player is using android, forked from and work alongside samp-stdlib (sampctl)
 
 ## Installation
 1. Load the filterscript
