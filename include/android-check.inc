@@ -1,3 +1,8 @@
+#if defined _ACK_include
+	#endinput
+#endif
+#define _ACK_include
+
 #if !defined SendClientCheck
     native SendClientCheck(playerid, type, arg, offset, size);
 #endif 
