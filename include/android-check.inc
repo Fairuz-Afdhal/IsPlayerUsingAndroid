@@ -78,15 +78,6 @@ public OnFilterScriptInit(){
     print("-----------------------------------------");
     print("    Android Check Include Loaded         ");
     print("-----------------------------------------");
-    print("Usage: make a callback, example:         ");
-    print("                                         ");
-    print("forward OnCheckOperatingSystem(playerid);");
-    print("public OnCheckOperatingSystem(playerid) {");
-    print("    //your code below here               ");
-    print("    return 1;                            ");
-    print("}                                        ");
-    print("                                         ");
-    print("-----------------------------------------");
 	#if defined ACK_OnFilterScriptInit
 		return ACK_OnFilterScriptInit();
     #else
