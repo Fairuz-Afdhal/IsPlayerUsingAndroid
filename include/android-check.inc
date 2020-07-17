@@ -122,6 +122,50 @@ public OnFilterScriptExit()
 	forward ACK_OnFilterScriptExit();
 #endif
 
+public OnGameModeInit()
+{
+    print("-----------------------------------------");
+    print("   Android Check Include loaded          ");
+    print("-----------------------------------------");
+	#if defined ACK_OnGameModeInit
+		return ACK_OnGameModeInit();
+	#else
+        return 1;
+    #endif
+}
+
+#if defined _ALS_OnGameModeInit
+	#undef OnGameModeInit
+#else
+	#define _ALS_OnGameModeInit
+#endif
+#define OnGameModeInit ACK_OnGameModeInit
+#if defined ACK_OnGameModeInit
+	forward ACK_OnGameModeInit();
+#endif
+
+public OnGameModeExit()
+{
+    print("-----------------------------------------");
+    print("   Android Check Include unloaded        ");
+    print("-----------------------------------------");
+	#if defined ACK_OnGameModeExit
+		return ACK_OnGameModeExit();
+	#else
+        return 1;
+    #endif
+}
+
+#if defined _ALS_OnGameModeExit
+	#undef OnGameModeExit
+#else
+	#define _ALS_OnGameModeExit
+#endif
+#define OnGameModeExit ACK_OnGameModeExit
+#if defined ACK_OnGameModeExit
+	forward ACK_OnGameModeExit();
+#endif
+
 
 public OnPlayerConnect(playerid)
 {
