@@ -1,9 +1,9 @@
 # OnCheckOperatingSystem
-Check if a player is using android, forked from and work alongside samp-stdlib (sampctl)
+Check if a player is using android
 
 # Include Version
 ## Installation
-1. Put this into your `pawno/include` folder
+1. Put `android-check.inc` into your `pawno/include` folder
 2. Add to the top of your scripts `#include <android-check>`
 
 ## Usage
