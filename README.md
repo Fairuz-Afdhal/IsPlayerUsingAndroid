@@ -20,3 +20,5 @@ public OnPlayerSpawn( playerid )
 
 ## Note
 You may use it in another callback, but not OnPlayerConnect!
+SendClientCheck and OnClientCheckResponse only works with filterscript, please see
+https://github.com/Zeex/sampgdk/issues/124
