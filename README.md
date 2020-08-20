@@ -1,62 +1,22 @@
-# OnCheckOperatingSystem
+# IsPlayerAndroid
 Check if a player is using android
 
-# Include Version
-## Installation
-1. Put `android-check.inc` into your `pawno/include` folder
-2. Add to the top of your scripts `#include <android-check>`
-
-## Usage
-Do some stuff, depends on players `OSType`
-```pawn
- public OnCheckOperatingSystem(playerid, OSType){
-     if(OSType == OS_TYPE_ANDROID)
-        printf("Player with id %d is using android", playerid);
-     else
-        printf("Player with id %d is using not using android", playerid);     
-     return 1;
- }
-```
-
-## Definition
-```pawn
-#define OS_TYPE_ANDROID 0
-#define OS_TYPE_PC 1
-```
-
-## Notes
-> **Notice that you no longer needs filterscripts version if you already use this one.**
-
-
-# Filterscript Version
 ## Installation
 1. Load the filterscript
-2. Put this somewhere to your gamemode
+2. Put the define in your gamemode to make it easier
+```pawn
+#define IsPlayerAndroid(%0)                 GetPVarInt(%0, "NotAndroid") == 0)
+```
  
+## Usage 
 ```pawn
-#define OS_TYPE_ANDROID 0
-#define OS_TYPE_PC 1
-
-forward OnCheckOperatingSystem(playerid, OSType);
-public OnCheckOperatingSystem(playerid, OSType) {
-    return 1;
+public OnPlayerSpawn( playerid )
+{
+ if ( IsPlayerAndroid(playerid) )
+  SendClientMessage(playerid, "You're connected from android");
+ return 1;
 }
 ```
 
-## Usage
-```pawn
-#define OS_TYPE_ANDROID 0
-#define OS_TYPE_PC 1
-
-forward OnCheckOperatingSystem(playerid, OSType);
-public OnCheckOperatingSystem(playerid, OSType) {
-    if (OSType == OS_TYPE_PC)  {
-        print("Kicking player!");
-        Kick(playerid);
-    }
-    else {
-        print("Safe!");
-    }
-    return 1;
-}
-```
+## Note
+You may use it in another callback, but not OnPlayerConnect!
