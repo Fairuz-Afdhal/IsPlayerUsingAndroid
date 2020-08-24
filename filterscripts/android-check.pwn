@@ -6,7 +6,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 
 #pragma warning disable 239
 
-#define IsPlayerAndroid(%0)                 GetPVarInt(%0, "NotAndroid") == 0)
+#define IsPlayerAndroid(%0)                 GetPVarInt(%0, "NotAndroid") == 0
 
 public OnFilterScriptInit()
 {
