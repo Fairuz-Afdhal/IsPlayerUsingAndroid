@@ -1,5 +1,5 @@
-# IsPlayerAndroid
-Check if a player is using android
+# WARNING
+Some android clients has bypassed this function, please use [open.mp](https://www.open.mp/) IsPlayerUsingOfficialClient() function, you can use both at the same time.
 
 ## Installation
 1. Load the filterscript
@@ -9,16 +9,12 @@ Check if a player is using android
 ```
  
 ## Usage 
+The script may only be loaded as filterscript because SendClientCheck is only called when you do so, [read](https://github.com/Zeex/sampgdk/issues/124).
 ```pawn
-public OnPlayerSpawn( playerid )
+public OnPlayerSpawn(playerid)
 {
- if ( IsPlayerAndroid(playerid) )
-  SendClientMessage(playerid, "You're connected from android");
+    if(IsPlayerAndroid(playerid))
+        SendClientMessage(playerid, "You're connected from android");
  return 1;
 }
 ```
-
-## Note
-You may use it in another callback, but not OnPlayerConnect!
-SendClientCheck and OnClientCheckResponse only works with filterscript, please see
-https://github.com/Zeex/sampgdk/issues/124
